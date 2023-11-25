@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'main.User'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'Collectors_cars.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'users/templates'],
+        'DIRS': [BASE_DIR / 'main/templates/main'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
