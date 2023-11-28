@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 #from django.http import HttpResponse
-from .models import Task
-from .forms import TaskForm
+from .models import Task, Post
+from .forms import TaskForm, PostForm
 from django.contrib.auth import authenticate, login
 from django.views import View
 from django.shortcuts import render, redirect
@@ -10,6 +10,7 @@ from .forms import UserCreationForm
 
 def index(request):
     tasks = Task.objects.all()
+    posts = Post.objects.all()
     return render(request, 'main/index.html', {'title': 'Главная страница сайта', 'tasks': tasks})
 
 def about(request):
@@ -32,6 +33,23 @@ def create(request):
     }
     return render(request, 'main/create.html', context)
 
+
+def create_post(request):
+    error = ''
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        else:
+            error = 'Форма не верна'
+
+    form = PostForm()
+    context = {
+        'form': form,
+        'error': error
+    }
+    return render(request, 'main/create_post.html', context)
 
 class Register(View):
     template_name = 'registration/register.html'

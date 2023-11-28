@@ -3,7 +3,14 @@
 {% block title %}
 {{ title }}
 {% endblock %}
-
+<ul class="list-group">
+    <li class="list-group-item">
+        User: {{ user }}
+    </li>
+    <li class="list-group-item">
+        <a href="{% url 'home' %}">Home</a>
+    </li>
+</ul>
 {% block content %}
     <h1>Главная старница</h1>
     {% if tasks %}
@@ -15,6 +22,6 @@
             </div>
         {% endfor %}
     {% else %}
-        <p>У нас нет записей!</p>
+        <p>У вас нет записей!</p>
     {% endif %}
 {% endblock %}

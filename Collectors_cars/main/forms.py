@@ -1,4 +1,4 @@
-from .models import Task
+from .models import Task, Post
 from django.forms import ModelForm, TextInput, Textarea
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -24,6 +24,24 @@ class TaskForm(ModelForm):
             }),
         }
 User = get_user_model()
+
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ["title", "text"]
+        widgets = {
+            "title": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите название'
+            }),
+            "text": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите text'
+            }),
+        }
+User = get_user_model()
+
 
 class UserCreationForm(UserCreationForm):
     email = forms.EmailField(
