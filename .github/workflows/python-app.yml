@@ -14,9 +14,7 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -28,3 +26,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+  pub:
+    needs: [build]
+    runs-on: ubuntu-latest
+    env:
+      LOGIN: $ {{secrets.DOCKER_LOGIN}}
+      NAME:  $ {{sectrets.DOCKER_NAME}}
+    steps:
+      - name: login to docker
+        run: echo ${{secrets.DOCKER}} | docker login -u ${{secrets.DOCKER_LOGIN}} --password-stdin
+        uses: actions/checkout@master
+      - name: build image
+        run: docker build-t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile
+      - name: Push image to docker
+        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}gi
