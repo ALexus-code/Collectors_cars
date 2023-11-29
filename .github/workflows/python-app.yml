@@ -40,4 +40,4 @@ jobs:
       - name: build image
         run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Collectors_cars/Dockerfile .
       - name: Push image to docker
-        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}gi
+        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
