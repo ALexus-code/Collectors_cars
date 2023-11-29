@@ -35,6 +35,7 @@ jobs:
     steps:
       - name: login to docker
         run: echo ${{secrets.DOCKER}} | docker login -u ${{secrets.DOCKER_LOGIN}} --password-stdin
+      - name: branch checkout
         uses: actions/checkout@master
       - name: build image
         run: docker build-t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile
