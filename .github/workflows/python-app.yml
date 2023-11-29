@@ -17,6 +17,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    - name: Cache Docker layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
@@ -37,7 +48,13 @@ jobs:
         run: echo ${{secrets.DOCKER}} | docker login -u ${{secrets.DOCKER_LOGIN}} --password-stdin
       - name: branch checkout
         uses: actions/checkout@master
-      - name: build image
-        run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Collectors_cars/Dockerfile .
-      - name: Push image to docker
-        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Collectors_cars/Dockerfile
+          push: true
+          tags: cars:latest,cars:${{ github.run_number }}
+          platforms: linux/amd64,linux/arm64/v8
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
