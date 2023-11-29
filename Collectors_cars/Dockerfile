@@ -1,4 +1,4 @@
-FROM python 3.11 alpine
+FROM python:3.11 alpine
 WORKDIR /collectors_cars
 COPY ./ /collectors_cars
 RUN apk update && pip install -r ../requirements.txt --no-cache-dir
