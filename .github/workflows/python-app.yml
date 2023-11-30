@@ -42,4 +42,4 @@ jobs:
       - name: branch checkout
         uses: actions/checkout@master
       - name: Build and push
-        run: docker buildx build --platform linux/arm64 -f Collectors_cars/Dockerfile  -t $LOGIN/$NAME:${GITHUB_REF:11} . --push
+        run: docker build -f Collectors_cars/Dockerfile  -t $LOGIN/$NAME:${GITHUB_REF:11} . --push

@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.12.0-bookworm-arm64
 WORKDIR /collectors_cars
 COPY ./ /collectors_cars
 RUN pip install -r ../requirements.txt --no-cache-dir
