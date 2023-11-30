@@ -44,4 +44,4 @@ jobs:
       - name: creating an instance of builder Build and push
         run: docker buildx create --use
       - name: Build and push
-        run: docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag $LOGIN/$NAME:${GITHUB_REF:11}-buildx-latest .
+        run: docker buildx build -f Collectors_cars/Dockerfile --push --platform linux/arm64/v8,linux/amd64 --tag $LOGIN/$NAME:${GITHUB_REF:11}-buildx-latest .
