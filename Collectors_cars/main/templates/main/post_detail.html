@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Detail</h1>
+{% for post in post_list %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.author }}</p>
+    <p>{{ post.text }}</p>
+{% endfor %}
+</body>
+</html>
