@@ -1,13 +1,13 @@
-from .models import Task#, Post
+from .models import Post
 from django.forms import ModelForm, TextInput, Textarea
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-class TaskForm(ModelForm):
+class PostForm(ModelForm):
     class Meta:
-        model = Task
+        model = Post
         fields = ["title", "scale", "task"]
         widgets = {
             "title": TextInput(attrs={
@@ -25,22 +25,6 @@ class TaskForm(ModelForm):
         }
 User = get_user_model()
 
-
-#class PostForm(ModelForm):
-#    class Meta:
-#        model = Post
-#        fields = ["title", "text"]
-#        widgets = {
-#            "title": TextInput(attrs={
-#                'class': 'form-control',
-#                'placeholder': 'Введите название'
-#            }),
-#            "text": Textarea(attrs={
-#                'class': 'form-control',
-#               'placeholder': 'Введите text'
- #           }),
- #       }
-#User = get_user_model()
 
 
 class UserCreationForm(UserCreationForm):
