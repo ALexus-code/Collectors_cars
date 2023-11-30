@@ -1,6 +1,6 @@
 FROM python:3.12.0-bookworm
 WORKDIR /opt/app
-COPY ./Collectors_cars/Collectors_cars/ .
+COPY ./Collectors_cars/ .
 COPY ./requirements.txt .
 RUN ls -lh
 RUN pip install -r requirements.txt --no-cache-dir
