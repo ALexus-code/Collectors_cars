@@ -12,7 +12,7 @@ class Post(models.Model):
     date_pub = models.DateTimeField(auto_now_add=True)
     #author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="post")
     def __str__(self):
-        return self.title
+        return '{}'.format(self.title)
 
     class Meta:
         verbose_name = 'Пост'
