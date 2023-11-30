@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ["title", "scale", "task"]
+        fields = ["title", "scale", "text"]
         widgets = {
             "title": TextInput(attrs={
                 'class': 'form-control',
@@ -18,7 +18,7 @@ class PostForm(ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Введите Масштаб'
             }),
-            "task": Textarea(attrs={
+            "text": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введите описание'
             }),
