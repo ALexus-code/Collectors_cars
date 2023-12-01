@@ -1,14 +1,17 @@
 from .models import Post
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, Select
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
+
+
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ["title", "scale", "text"]
+        exclude = ['author']
+        fields = ["title", "scale", "text", "author"]
         widgets = {
             "title": TextInput(attrs={
                 'class': 'form-control',

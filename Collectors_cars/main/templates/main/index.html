@@ -12,12 +12,13 @@
     </li>
 </ul>
 {% block content %}
-    <h1 class="mb-5">Главная старница</h1>
+    <h1 class="mb-5">Блог</h1>
     {% if posts %}
         {% for el in posts %}
             <div class="card">
                 <h1 class="card-title">__{{ el.title }}__</h1>
                 <h5 class="card-header">Масштаб:{{ el.scale }}</h5>
+                <h5 class="card-header">{{ el.author }}</h5>
                 <p class="card-header">{{ el.date_pub }}</p>
                 <p class="card-text">__{{ el.text }}</p>
             </div>

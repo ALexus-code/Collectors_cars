@@ -22,14 +22,19 @@ def about(request):
     return render(request, 'main/about.html')
 
 
-# @login_required  1012
-# @permission_required('blog.add_post', raise_exception=False)
+#@login_required
+#@permission_required('blog.create', raise_exception=True)
 def create(request):
     error = ''
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST or None)
+
+        print("User: " + str(request.user))
+
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
             return redirect('home')
         else:
             error = 'Форма не верна'
