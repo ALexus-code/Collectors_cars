@@ -4,6 +4,7 @@ from .forms import PostForm
 from django.contrib.auth import authenticate, login
 from django.views import View, generic
 from django.shortcuts import render, redirect
+import PIL
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 from .forms import UserCreationForm
